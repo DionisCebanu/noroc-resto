@@ -1,0 +1,112 @@
+
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;700&display=swap');
+
+    @tailwind base;
+    @tailwind components;
+    @tailwind utilities;
+     
+    @layer base {
+      :root {
+        --background: 220 20% 7%; /* Dark Slate Blue/Gray */
+        --foreground: 210 40% 98%; /* Almost White */
+    
+        --card: 220 20% 10%; /* Slightly Lighter Dark Slate */
+        --card-foreground: 210 40% 96%; /* Light Gray for Card Text */
+    
+        --popover: 220 20% 5%; /* Darkest Popover Background */
+        --popover-foreground: 210 40% 98%;
+     
+        --primary: 45 100% 60%; /* Vibrant Gold/Amber */
+        --primary-foreground: 220 20% 10%; /* Dark text on Gold */
+     
+        --secondary: 30 80% 65%; /* Softer Orange/Peach */
+        --secondary-foreground: 220 20% 10%; /* Dark text on Peach */
+     
+        --muted: 220 15% 25%; /* Muted Dark Slate */
+        --muted-foreground: 210 30% 70%; /* Muted Gray Text */
+     
+        --accent: 350 90% 65%; /* Rich Crimson/Ruby Red */
+        --accent-foreground: 210 40% 98%; /* White text on Accent */
+     
+        --destructive: 0 70% 55%; /* Standard Destructive Red */
+        --destructive-foreground: 210 40% 98%;
+    
+        --border: 220 15% 20%; /* Dark Border */
+        --input: 220 15% 18%; /* Dark Input Background */
+        --ring: 45 100% 70%; /* Gold Ring for Focus */
+     
+        --radius: 0.75rem;
+      }
+     
+      .dark {
+        /* Keeping the same dark theme values for .dark, as it's already dark themed */
+        --background: 220 20% 7%;
+        --foreground: 210 40% 98%;
+    
+        --card: 220 20% 10%;
+        --card-foreground: 210 40% 96%;
+    
+        --popover: 220 20% 5%;
+        --popover-foreground: 210 40% 98%;
+     
+        --primary: 45 100% 60%;
+        --primary-foreground: 220 20% 10%;
+     
+        --secondary: 30 80% 65%;
+        --secondary-foreground: 220 20% 10%;
+     
+        --muted: 220 15% 25%;
+        --muted-foreground: 210 30% 70%;
+     
+        --accent: 350 90% 65%;
+        --accent-foreground: 210 40% 98%;
+     
+        --destructive: 0 70% 55%;
+        --destructive-foreground: 210 40% 98%;
+    
+        --border: 220 15% 20%;
+        --input: 220 15% 18%;
+        --ring: 45 100% 70%;
+      }
+    }
+     
+    @layer base {
+      * {
+        @apply border-border;
+      }
+      body {
+        @apply bg-background text-foreground;
+        font-family: 'Inter', sans-serif;
+      }
+      h1, h2, h3, h4, h5, h6 {
+        @apply font-display;
+      }
+    }
+
+    /* Scrollbar Styling */
+    ::-webkit-scrollbar {
+      width: 10px;
+      height: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: hsl(var(--background) / 0.5);
+      border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: hsl(var(--primary) / 0.7);
+      border-radius: 10px;
+      border: 2px solid hsl(var(--background) / 0.5);
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: hsl(var(--primary));
+    }
+
+    /* For Firefox */
+    html {
+      scrollbar-width: thin;
+      scrollbar-color: hsl(var(--primary) / 0.7) hsl(var(--background) / 0.5);
+    }
+  
