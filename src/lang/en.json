@@ -184,5 +184,20 @@
   "bookingConfirmationDialogSubtitle": "Your table is waiting! Here are your reservation details:",
   "bookingConfirmationDialogClose": "Awesome!",
   "bookingToastedSuccessTitle": "Booking Successful!",
-  "bookingToastedSuccessMessage": "Your reservation details are confirmed."
+  "bookingToastedSuccessMessage": "Your reservation details are confirmed.",
+  "promotionsTitle": "Chef's Specials",
+  "promotion1Name": "Sizzling Steak Platter",
+  "promotion1Desc": "Aged ribeye, garlic mashed potatoes, seasonal vegetables.",
+  "promotion2Name": "Seafood Paella",
+  "promotion2Desc": "Saffron rice, shrimp, mussels, calamari, chorizo.",
+  "promotion3Name": "Truffle Mushroom Risotto",
+  "promotion3Desc": "Creamy Arborio rice, wild mushrooms, black truffle oil.",
+  "promotion4Name": "Spicy Chicken Ramen",
+  "promotion4Desc": "Rich broth, tender chicken, soft-boiled egg, nori.",
+  "promotion5Name": "Decadent Chocolate Lava Cake",
+  "promotion5Desc": "Warm chocolate cake, molten center, vanilla ice cream.",
+  "promotion6Name": "Artisan Cheese Board",
+  "promotion6Desc": "Selection of local and imported cheeses, fruits, nuts.",
+  "promotionBadge": "Special",
+  "promotionBtn": "Order Now"
 }

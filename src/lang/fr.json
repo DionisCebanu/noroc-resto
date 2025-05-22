@@ -184,5 +184,21 @@
   "bookingConfirmationDialogSubtitle": "Votre table vous attend ! Voici les détails de votre réservation :",
   "bookingConfirmationDialogClose": "Génial !",
   "bookingToastedSuccessTitle": "Réservation Réussie !",
-  "bookingToastedSuccessMessage": "Les détails de votre réservation sont confirmés."
+  "bookingToastedSuccessMessage": "Les détails de votre réservation sont confirmés.",
+
+
+  "promotion1Name": "Plateau de steak saisissant",
+  "promotion1Desc": "Entrecôte vieillie, purée à l’ail, légumes de saison.",
+  "promotion2Name": "Paella de fruits de mer",
+  "promotion2Desc": "Riz au safran, crevettes, moules, calmars, chorizo.",
+  "promotion3Name": "Risotto aux champignons et truffes",
+  "promotion3Desc": "Riz Arborio crémeux, champignons sauvages, huile de truffe noire.",
+  "promotion4Name": "Ramen au poulet épicé",
+  "promotion4Desc": "Bouillon riche, poulet tendre, œuf mollet, nori.",
+  "promotion5Name": "Fondant au chocolat décadent",
+  "promotion5Desc": "Gâteau au chocolat chaud, cœur fondant, glace à la vanille.",
+  "promotion6Name": "Plateau de fromages artisanaux",
+  "promotion6Desc": "Sélection de fromages locaux et importés, fruits, noix.",
+  "promotionBadge": "Spécial",
+  "promotionBtn": "Commander"
 }

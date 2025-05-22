@@ -25,7 +25,7 @@
   "servicePrivateEventsDesc": "Găzduiți ocaziile speciale în spațiile noastre elegante.",
   "serviceCateringTitle": "Catering Gourmet",
   "serviceCateringDesc": "Aduceți experiența Lingura de Aur la locația dumneavoastră.",
-  "promotionsTitle": "Promoții Sezoniere",
+
   "promotionPastaNightTitle": "Marțea Pastelor",
   "promotionPastaNightDesc": "Bucurați-vă de 2 la preț de 1 la toate pastele în fiecare marți!",
   "promotionWineWednesdayTitle": "Miercurea Vinului",
@@ -184,5 +184,21 @@
   "bookingConfirmationDialogSubtitle": "Masa ta te așteaptă! Iată detaliile rezervării tale:",
   "bookingConfirmationDialogClose": "Super!",
   "bookingToastedSuccessTitle": "Rezervare Reușită!",
-  "bookingToastedSuccessMessage": "Detaliile rezervării tale sunt confirmate."
+  "bookingToastedSuccessMessage": "Detaliile rezervării tale sunt confirmate.",
+
+  "promotionsTitle": "Specialitățile bucătarului",
+  "promotion1Name": "Platou de friptură suculentă",
+  "promotion1Desc": "Antricot maturat, piure de usturoi, legume de sezon.",
+  "promotion2Name": "Paella cu fructe de mare",
+  "promotion2Desc": "Orez cu șofran, creveți, midii, calamari, chorizo.",
+  "promotion3Name": "Risotto cu ciuperci și trufe",
+  "promotion3Desc": "Orez Arborio cremos, ciuperci sălbatice, ulei de trufe negre.",
+  "promotion4Name": "Ramen picant cu pui",
+  "promotion4Desc": "Supă bogată, pui fraged, ou fiert moale, nori.",
+  "promotion5Name": "Tort lava cu ciocolată decadent",
+  "promotion5Desc": "Tort cald de ciocolată cu centru lichid, înghețată de vanilie.",
+  "promotion6Name": "Platou de brânzeturi artizanale",
+  "promotion6Desc": "Selecție de brânzeturi locale și importate, fructe, nuci.",
+  "promotionBadge": "Special",
+  "promotionBtn": "Comandă acum"
 }
