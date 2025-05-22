@@ -1,10 +1,11 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { LanguageContext } from '@/context/LanguageContext';
 
-const images = [
+/* const images = [
   { 
     id: 1, 
     title: "A Cozy Atmosphere", 
@@ -25,31 +26,39 @@ const images = [
     src: "/images/restaurant/restaurant-outside.png",
     description: "Discover the serenity of our quiet location, where you can dine surrounded by peaceful views. An idyllic outdoor setting for those who crave a break from the hustle and bustle.",
   },
+]; */
+
+const slides = [
+  { id: 1, alt: "Restaurant Interior", src: "/images/restaurant/restaurant-interior.png", titleKey: "hero1Title", descKey: "hero1Description" },
+  { id: 2, alt: "Gourmet Dish", src: "/images/restaurant/restaurant-interior2.png", titleKey: "hero2Title", descKey: "hero2Description" },
+  { id: 3, alt: "Cozy Ambiance", src: "/images/restaurant/restaurant-outside.png", titleKey: "hero3Title", descKey: "hero3Description" },
 ];
 
+
 const Hero = () => {
+  const { t } = useContext(LanguageContext);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
-  //Typing animation state
-  const [typedTitle, setTypedTitle] = useState("");
-
+  const [typedTitle, setTypedTitle] = useState('');
+  const [direction, setDirection] = useState(1);
 
   const nextSlide = () => {
-    setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
+    setDirection(1);
+    setCurrentImageIndex((prevIndex) => (prevIndex + 1) % slides.length);
   };
 
   const prevSlide = () => {
-    setCurrentImageIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
+    setDirection(-1);
+    setCurrentImageIndex((prevIndex) => (prevIndex - 1 + slides.length) % slides.length);
   };
 
   useEffect(() => {
-    const timer = setTimeout(nextSlide, 7000); // Auto-slide every 7 seconds
+    const timer = setTimeout(nextSlide, 7000);
     return () => clearTimeout(timer);
   }, [currentImageIndex]);
-  
+
   const slideVariants = {
-    initial: (direction) => ({
-      x: direction > 0 ? '100%' : '-100%',
+    initial: (dir) => ({
+      x: dir > 0 ? '100%' : '-100%',
       opacity: 0,
     }),
     animate: {
@@ -57,62 +66,51 @@ const Hero = () => {
       opacity: 1,
       transition: { type: 'spring', stiffness: 50, damping: 20, duration: 0.8 },
     },
-    exit: (direction) => ({
-      x: direction < 0 ? '100%' : '-100%',
+    exit: (dir) => ({
+      x: dir < 0 ? '100%' : '-100%',
       opacity: 0,
       transition: { type: 'spring', stiffness: 50, damping: 20, duration: 0.8 },
     }),
   };
 
-  // Typing animation useEffect
   useEffect(() => {
-    const fullText = images[currentImageIndex].title;
+    const fullText = t(slides[currentImageIndex].titleKey);
     let index = 0;
-    let typedText = '';
-  
-    // Clear immediately
-    setTypedTitle('');
-  
-    const intervalId = setInterval(() => {
-      typedText += fullText.charAt(index);
-      setTypedTitle(typedText);
-      index++;
-  
-      if (index >= fullText.length) {
-        clearInterval(intervalId);
-      }
-    }, 60);
-  
-    return () => clearInterval(intervalId);
-  }, [currentImageIndex]);
-  
-  
-  
-  
+    let typed = '';
 
+    setTypedTitle('');
+    const intervalId = setInterval(() => {
+      typed += fullText.charAt(index);
+      setTypedTitle(typed);
+      index++;
+      if (index >= fullText.length) clearInterval(intervalId);
+    }, 60);
+
+    return () => clearInterval(intervalId);
+  }, [currentImageIndex, t]);
 
   return (
     <section id="home" className="relative h-screen flex items-center justify-center overflow-hidden">
-      <AnimatePresence initial={false} custom={currentImageIndex}>
+      <AnimatePresence initial={false} custom={direction}>
         <motion.div
-          key={images[currentImageIndex].id}
+          key={slides[currentImageIndex].id}
           className="absolute inset-0 w-full h-full"
-          custom={1} 
+          custom={direction}
           variants={slideVariants}
           initial="initial"
           animate="animate"
           exit="exit"
         >
-          <img  
-            className="w-full h-full object-cover" 
-            alt={images[currentImageIndex].alt}
-            src={images[currentImageIndex].src}
+          <img
+            className="w-full h-full object-cover"
+            alt={slides[currentImageIndex].alt}
+            src={slides[currentImageIndex].src}
           />
-          <div className="absolute inset-0 bg-black/60"></div>
+          <div className="absolute inset-0 bg-black/60" />
         </motion.div>
       </AnimatePresence>
 
-      <motion.div 
+      <motion.div
         className="relative z-10 text-center p-6 md:p-10 rounded-xl bg-slate-800/70 backdrop-blur-sm shadow-2xl max-w-2xl mx-auto"
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
@@ -122,18 +120,19 @@ const Hero = () => {
           {typedTitle}
         </h1>
         <p className="text-base sm:text-lg text-gray-400 italic mb-4">
-          {images[currentImageIndex].description}
+          {t(slides[currentImageIndex].descKey)}
         </p>
-        <Button 
-          size="lg" 
-          variant="secondary" 
+        <Button
+          size="lg"
+          variant="secondary"
           className="text-lg font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
           onClick={() => document.getElementById('promotions')?.scrollIntoView({ behavior: 'smooth' })}
         >
-          View Our Menu
+          {t('heroCta')}
         </Button>
       </motion.div>
 
+      {/* Arrows */}
       <Button
         variant="ghost"
         size="icon"
@@ -143,6 +142,7 @@ const Hero = () => {
       >
         <ChevronLeft size={32} />
       </Button>
+
       <Button
         variant="ghost"
         size="icon"
@@ -152,9 +152,10 @@ const Hero = () => {
       >
         <ChevronRight size={32} />
       </Button>
-      
+
+      {/* Dots */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex space-x-2">
-        {images.map((_, index) => (
+        {slides.map((_, index) => (
           <motion.button
             key={index}
             onClick={() => setCurrentImageIndex(index)}
