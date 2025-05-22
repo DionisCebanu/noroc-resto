@@ -100,7 +100,7 @@
   "bookingPageTitle": "Réservez Votre Table",
   "bookingPageSubtitle": "Assurez votre place pour une expérience culinaire inoubliable. Sélectionnez la date, l'heure et le nombre de convives.",
   "bookingDetailsTitle": "Détails de la Réservation",
-  "bookingDetailsSelectedTable": "Table Sélectionnée : {{tableId}} (Capacité : {{capacity}})",
+  "bookingDetailsSelectedTable": "Table Sélectionnée pour : ",
   "bookingDetailsSelectedTableShort": "Table",
   "bookingFormDate": "Date",
   "bookingFormTime": "Heure",

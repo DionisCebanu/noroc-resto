@@ -100,7 +100,7 @@
   "bookingPageTitle": "Reserve Your Table",
   "bookingPageSubtitle": "Secure your spot for an unforgettable dining experience. Select your preferred date, time, and party size.",
   "bookingDetailsTitle": "Reservation Details",
-  "bookingDetailsSelectedTable": "Selected Table: {{tableId}} (Capacity: {{capacity}})",
+  "bookingDetailsSelectedTable": "Selected Table for: ",
   "bookingDetailsSelectedTableShort": "Table",
   "bookingFormDate": "Date",
   "bookingFormTime": "Time",

@@ -100,7 +100,7 @@
   "bookingPageTitle": "Rezervă Masa Ta",
   "bookingPageSubtitle": "Asigură-ți locul pentru o experiență culinară de neuitat. Selectează data, ora și numărul de persoane preferate.",
   "bookingDetailsTitle": "Detalii Rezervare",
-  "bookingDetailsSelectedTable": "Masa Selectată: {{tableId}} (Capacitate: {{capacity}})",
+  "bookingDetailsSelectedTable": "Masa Selectată cu capacitate de locuri:",
   "bookingDetailsSelectedTableShort": "Masa",
   "bookingFormDate": "Data",
   "bookingFormTime": "Ora",
