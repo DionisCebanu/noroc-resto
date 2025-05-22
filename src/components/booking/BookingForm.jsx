@@ -1,5 +1,4 @@
-
-    import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
     import { motion, AnimatePresence } from 'framer-motion';
     import { Button } from '@/components/ui/button';
     import { Input } from '@/components/ui/input';
@@ -8,28 +7,29 @@
     import { User, Phone, Mail, Users, UtensilsCrossed, CalendarDays, Clock } from 'lucide-react';
     import { LanguageContext } from '@/context/LanguageContext';
 
-    const BookingForm = ({ initialFormData, onSubmit, errors, setErrors, showFullForm, selectedTableDetails }) => {
+    const BookingForm = ({ initialFormData, onFormDataChange, onSubmit, errors, setErrors, showFullForm, selectedTableDetails }) => {
       const { t } = useContext(LanguageContext);
-      const [formData, setFormData] = useState(initialFormData);
+      // Internal state for controlled components, synced with parent via onFormDataChange
+      const [localFormData, setLocalFormData] = useState(initialFormData);
 
       useEffect(() => {
-        setFormData(initialFormData);
+        setLocalFormData(initialFormData);
       }, [initialFormData]);
 
       const handleChange = (e) => {
         const { id, value } = e.target;
-        setFormData((prev) => ({ ...prev, [id]: value }));
+        const updatedLocalData = { ...localFormData, [id]: value };
+        setLocalFormData(updatedLocalData);
+        onFormDataChange(updatedLocalData); // Notify parent of change
+
         if (errors[id]) {
           setErrors((prev) => ({ ...prev, [id]: null }));
-        }
-        if (id === "guests") {
-          setFormData(prev => ({ ...prev, selectedTableId: null }));
         }
       };
 
       const handleFormSubmit = (e) => {
         e.preventDefault();
-        onSubmit(formData);
+        onSubmit(localFormData); // Submit the current local form data
       };
 
       const today = new Date().toISOString().split('T')[0];
@@ -59,23 +59,23 @@
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                       <Label htmlFor="date" className="text-gray-300 flex items-center mb-1"><CalendarDays size={16} className="mr-2 text-accent" />{t('bookingFormDate')}</Label>
-                      <Input id="date" type="date" value={formData.date} onChange={handleChange} min={today} className={`bg-slate-700 border-slate-600 text-white placeholder-slate-400 focus:ring-accent ${errors.date ? 'border-red-500' : ''} `} />
+                      <Input id="date" type="date" value={localFormData.date} onChange={handleChange} min={today} className={`bg-slate-700 border-slate-600 text-white placeholder-slate-400 focus:ring-accent ${errors.date ? 'border-red-500' : ''} `} />
                       {errors.date && <p className="text-red-500 text-xs mt-1">{errors.date}</p>}
                   </div>
                   <div>
                       <Label htmlFor="time" className="text-gray-300 flex items-center mb-1"><Clock size={16} className="mr-2 text-accent" />{t('bookingFormTime')}</Label>
-                      <Input id="time" type="time" value={formData.time} onChange={handleChange} className={`bg-slate-700 border-slate-600 text-white placeholder-slate-400 focus:ring-accent ${errors.time ? 'border-red-500' : ''}`} />
+                      <Input id="time" type="time" value={localFormData.time} onChange={handleChange} className={`bg-slate-700 border-slate-600 text-white placeholder-slate-400 focus:ring-accent ${errors.time ? 'border-red-500' : ''}`} />
                       {errors.time && <p className="text-red-500 text-xs mt-1">{errors.time}</p>}
                   </div>
               </div>
                 <div>
                   <Label htmlFor="guests" className="text-gray-300 flex items-center mb-1"><Users size={16} className="mr-2 text-accent" />{t('bookingFormGuests')}</Label>
-                  <Input id="guests" type="number" placeholder={t('bookingFormGuestsPlaceholder')} min="1" max="20" value={formData.guests} onChange={handleChange} className={`bg-slate-700 border-slate-600 text-white placeholder-slate-400 focus:ring-accent ${errors.guests ? 'border-red-500' : ''}`} />
+                  <Input id="guests" type="number" placeholder={t('bookingFormGuestsPlaceholder')} min="1" max="20" value={localFormData.guests} onChange={handleChange} className={`bg-slate-700 border-slate-600 text-white placeholder-slate-400 focus:ring-accent ${errors.guests ? 'border-red-500' : ''}`} />
                   {errors.guests && <p className="text-red-500 text-xs mt-1">{errors.guests}</p>}
               </div>
               
               <AnimatePresence>
-              {(showFullForm || formData.selectedTableId) && (formData.date && formData.time && formData.guests) && (
+              {showFullForm && localFormData.date && localFormData.time && localFormData.guests && (
                   <motion.div
                       initial={{ opacity: 0, height: 0 }}
                       animate={{ opacity: 1, height: 'auto' }}
@@ -85,19 +85,19 @@
                   >
                       <div>
                           <Label htmlFor="name" className="text-gray-300 flex items-center mb-1"><User size={16} className="mr-2 text-accent" />{t('contactFormFullName')}</Label>
-                          <Input id="name" type="text" placeholder={t('contactFormFullNamePlaceholder')} value={formData.name} onChange={handleChange} className={`bg-slate-700 border-slate-600 text-white placeholder-slate-400 focus:ring-accent ${errors.name ? 'border-red-500' : ''}`} />
+                          <Input id="name" type="text" placeholder={t('contactFormFullNamePlaceholder')} value={localFormData.name} onChange={handleChange} className={`bg-slate-700 border-slate-600 text-white placeholder-slate-400 focus:ring-accent ${errors.name ? 'border-red-500' : ''}`} />
                           {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name}</p>}
                       </div>
                       
                       <div>
                           <Label htmlFor="phone" className="text-gray-300 flex items-center mb-1"><Phone size={16} className="mr-2 text-accent" />{t('contactFormPhone').replace(' (Optional)','').replace(' (Optionnel)','')}</Label>
-                          <Input id="phone" type="tel" placeholder={t('contactFormPhonePlaceholder')} value={formData.phone} onChange={handleChange} className={`bg-slate-700 border-slate-600 text-white placeholder-slate-400 focus:ring-accent ${errors.phone ? 'border-red-500' : ''}`} />
+                          <Input id="phone" type="tel" placeholder={t('contactFormPhonePlaceholder')} value={localFormData.phone} onChange={handleChange} className={`bg-slate-700 border-slate-600 text-white placeholder-slate-400 focus:ring-accent ${errors.phone ? 'border-red-500' : ''}`} />
                           {errors.phone && <p className="text-red-500 text-xs mt-1">{errors.phone}</p>}
                       </div>
                 
                       <div>
                           <Label htmlFor="email" className="text-gray-300 flex items-center mb-1"><Mail size={16} className="mr-2 text-accent" />{t('contactFormEmail')}</Label>
-                          <Input id="email" type="email" placeholder={t('contactFormEmailPlaceholder')} value={formData.email} onChange={handleChange} className={`bg-slate-700 border-slate-600 text-white placeholder-slate-400 focus:ring-accent ${errors.email ? 'border-red-500' : ''}`} />
+                          <Input id="email" type="email" placeholder={t('contactFormEmailPlaceholder')} value={localFormData.email} onChange={handleChange} className={`bg-slate-700 border-slate-600 text-white placeholder-slate-400 focus:ring-accent ${errors.email ? 'border-red-500' : ''}`} />
                           {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email}</p>}
                       </div>
                   </motion.div>
@@ -111,7 +111,7 @@
                 <Button 
                   type="submit" 
                   className="w-full bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 text-white font-semibold py-3 text-lg transition-all duration-300 transform hover:shadow-lg hover:shadow-accent/50 disabled:opacity-70"
-                  disabled={!(formData.selectedTableId && formData.date && formData.time && formData.guests)}
+                  disabled={!(localFormData.selectedTableId && localFormData.date && localFormData.time && localFormData.guests && localFormData.name && localFormData.phone && localFormData.email)}
                 >
                   {t('bookingFormSubmit')}
                 </Button>
@@ -123,4 +123,3 @@
     };
 
     export default BookingForm;
-  

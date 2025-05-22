@@ -106,7 +106,11 @@
                     <img  
                         className="w-full h-full object-cover" 
                         alt="Restaurant location map placeholder" 
-                       src="https://images.unsplash.com/photo-1568952433726-63670a609517" />
+                       src="images/restaurant/maps.png" />
+                      
+                        <div className="mt-8 h-64 rounded-lg overflow-hidden shadow-lg">
+                    </div>
+
                  </div>
               </motion.div>
               

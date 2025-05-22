@@ -1,36 +1,41 @@
 import React, { useContext } from 'react';
     import { motion } from 'framer-motion';
-    import { Armchair, Users, XCircle } from 'lucide-react';
+    import { Armchair, Users, XCircle, AlertTriangle } from 'lucide-react';
     import { LanguageContext } from '@/context/LanguageContext';
 
-    const Table = ({ table, onTableSelect, isSelected, guestCount, disabled }) => {
+    const Table = ({ table, onTableSelect, isSelected, guestCount, formCriteriaSet }) => {
       const { id, capacity, type, position, status } = table;
       const isActuallyBooked = status === 'booked';
-      const isTooSmall = guestCount > 0 && capacity < guestCount;
-      const isEffectivelyDisabled = disabled || isActuallyBooked || isTooSmall;
+      
+      // isTooSmall is only relevant if guestCount is specified (formCriteriaSet is true)
+      const isTooSmall = formCriteriaSet && guestCount > 0 && capacity < guestCount;
+      
+      // A table is effectively disabled if it's booked, or if criteria are set and it's too small.
+      const isEffectivelyDisabled = isActuallyBooked || isTooSmall;
 
 
       let tableClasses = "absolute transform -translate-x-1/2 -translate-y-1/2 transition-all duration-200 ease-in-out flex flex-col items-center justify-center p-1 rounded-lg shadow-md";
       let chairClasses = "bg-slate-500 rounded-sm";
       let tableBodyClasses = "bg-slate-600 rounded-md flex items-center justify-center";
       
-      if (isSelected && !isActuallyBooked && !isTooSmall) {
+      if (isSelected && !isActuallyBooked && !isTooSmall && formCriteriaSet) {
         tableClasses += " ring-4 ring-accent scale-110 z-10";
         tableBodyClasses = "bg-accent rounded-md flex items-center justify-center";
         chairClasses = "bg-slate-300 rounded-sm";
       } else if (isActuallyBooked) {
-        tableClasses += " bg-red-800/80 cursor-not-allowed opacity-60";
+        tableClasses += " bg-red-800/80 cursor-not-allowed opacity-70";
         tableBodyClasses = "bg-red-600/60 rounded-md flex items-center justify-center";
         chairClasses = "bg-red-400/70 rounded-sm";
       } else if (isTooSmall) {
-        tableClasses += " bg-slate-700/60 cursor-not-allowed opacity-50";
-        tableBodyClasses = "bg-slate-500/50 rounded-md flex items-center justify-center";
+        tableClasses += " bg-yellow-700/60 cursor-not-allowed opacity-60"; // Different color for too small
+        tableBodyClasses = "bg-yellow-500/50 rounded-md flex items-center justify-center";
       } else {
         tableClasses += " bg-slate-700 hover:bg-slate-600 cursor-pointer hover:shadow-lg";
       }
 
-      if (disabled && !isSelected) { // If layout is globally disabled, and this table is not the one causing it
-         tableClasses += " opacity-50 cursor-not-allowed";
+      // General disabled appearance if criteria are not yet set, but allow hover for visual feedback
+      if (!formCriteriaSet && !isSelected) {
+         tableClasses += " opacity-80"; // Slightly less opaque than fully disabled
       }
 
 
@@ -49,7 +54,7 @@ import React, { useContext } from 'react';
         } else if (type === '6-seater-round') {
           for (let i = 0; i < 6; i++) {
             const angle = (i / 6) * 2 * Math.PI;
-            const radius = type === '6-seater-round' ? 28 : 35; // Adjust radius for round tables
+            const radius = type === '6-seater-round' ? 28 : 35; 
             const x = Math.cos(angle) * radius; 
             const y = Math.sin(angle) * radius;
             chairs.push(<div key={`${id}-c${i}`} className={`${chairClasses} ${chairSize}`} style={{ position: 'absolute', top: `calc(50% + ${y}px - 0.5rem)`, left: `calc(50% + ${x}px - 0.375rem)`}}></div>);
@@ -74,7 +79,7 @@ import React, { useContext } from 'react';
           layout
           style={{ top: position.y, left: position.x, ...tableShapeStyles }}
           className={tableClasses}
-          onClick={() => !isEffectivelyDisabled && onTableSelect(table)}
+          onClick={() => onTableSelect(table)} // Click logic handled in parent based on overall state
           whileHover={!isEffectivelyDisabled ? { scale: 1.1, zIndex: 10, boxShadow: "0px 0px 15px rgba(250, 176, 5, 0.5)" } : {}}
           whileTap={!isEffectivelyDisabled ? { scale: 0.95 } : {}}
           initial={{ opacity: 0, scale: 0.5 }}
@@ -86,10 +91,12 @@ import React, { useContext } from 'react';
             <div className="relative z-10 flex flex-col items-center text-white text-xs sm:text-sm">
               {isActuallyBooked ? (
                 <XCircle size={type === 'booth' || type === '6-seater-round' ? 16 : 14} className="mb-0.5 text-red-300"/>
+              ) : isTooSmall ? (
+                <AlertTriangle size={type === 'booth' || type === '6-seater-round' ? 16 : 14} className="mb-0.5 text-yellow-300"/>
               ) : (
                 <Armchair size={type === 'booth' || type === '6-seater-round' ? 16 : 14} className="mb-0.5"/>
               )}
-              <span className={isActuallyBooked ? 'text-red-200' : ''}>{capacity}</span>
+              <span className={isActuallyBooked ? 'text-red-200' : isTooSmall ? 'text-yellow-200' : ''}>{capacity}</span>
             </div>
           </div>
         </motion.div>
@@ -98,10 +105,12 @@ import React, { useContext } from 'react';
 
     const TableLayout = ({ tables, onTableSelect, selectedTableId, guestCount, disabled }) => {
       const { t } = useContext(LanguageContext);
+      const formCriteriaSet = guestCount > 0; // A simple check if guest count is entered
+      
       return (
         <div className={`relative w-full min-h-[320px] h-80 sm:h-96 md:h-[450px] bg-slate-900/50 rounded-xl border-2 border-dashed border-slate-700 overflow-hidden p-4 shadow-inner shadow-black/30`}>
-          {disabled && (
-             <div className="absolute inset-0 bg-slate-800/80 backdrop-blur-sm flex items-center justify-center z-20 rounded-lg">
+          {disabled && ( // This 'disabled' prop from parent BookingPage can still be used for an overlay if truly needed
+             <div className="absolute inset-0 bg-slate-800/90 backdrop-blur-sm flex items-center justify-center z-20 rounded-lg">
                 <motion.p 
                     initial={{opacity: 0, y: 20}}
                     animate={{opacity: 1, y: 0}}
@@ -111,14 +120,14 @@ import React, { useContext } from 'react';
                 </motion.p>
             </div>
           )}
-          {!disabled && tables.map(table => (
+          {tables.map(table => (
             <Table 
               key={table.id} 
               table={table} 
               onTableSelect={onTableSelect}
               isSelected={selectedTableId === table.id}
               guestCount={guestCount}
-              disabled={disabled} 
+              formCriteriaSet={formCriteriaSet} // Pass this down
             />
           ))}
           <div className="absolute top-2 left-2 bg-primary/20 px-3 py-1 rounded-full text-xs font-medium text-primary-foreground shadow">{t('tableLayoutEntrance')}</div>
