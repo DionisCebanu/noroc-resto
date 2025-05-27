@@ -210,5 +210,32 @@
     "eventsNoPosts": "No posts found for this category yet.",
     "readMoreLink": "Read More",
     "postTypeBlog": "Blog",
-    "postTypeEvent": "Event"
+    "postTypeEvent": "Event",
+
+
+    "menuPageChooseEventMenuTitle": "Event Menus",
+    "menuPageChooseEventMenuDesc": "Select from our curated menus for special occasions.",
+    "menuPageExploreEventMenusButton": "Explore Event Menus",
+    "menuPageBuildCustomMenuTitle": "Custom Menu",
+    "menuPageBuildCustomMenuDesc": "Create your own personalized dining experience.",
+    "menuPageBuildYourOwnButton": "Build Your Own",
+    "menuPageEventMenusListTitle": "Our Event Menus",
+    "menuPageCustomMenuBuilderTitle": "Build Your Custom Menu",
+    "menuPageOpenCustomizerButton": "Open Meal Customizer",
+    "backButtonText": "Back",
+    "backToEventMenusButton": "Back to Event Menus",
+    "pricePerPersonLabel": "Price per person",
+    "eventMenuWeddingTitle": "Wedding Celebration Menu",
+    "eventMenuBirthdayTitle": "Birthday Bash Menu",
+    "eventMenuGroupAppetizer": "Choose Your Appetizer",
+    "eventMenuGroupMainCourse": "Select Your Main Course",
+    "eventMenuGroupDessert": "Pick Your Dessert",
+    "eventMenuGroupStarter": "Choose Your Starter",
+    "eventMenuGroupMainDish": "Select Your Main Dish",
+    "eventMenuGroupSweetTreat": "Pick Your Sweet Treat",
+    "eventMenuErrorTitle": "Selection Incomplete",
+    "eventMenuErrorDesc": "Please select one item from each group.",
+    "eventMenuSuccessTitle": "Menu Selected!",
+    "eventMenuSuccessDesc": "You've selected the {{menuTitle}}.",
+    "eventMenuConfirmButton": "Confirm Selection"
 }
