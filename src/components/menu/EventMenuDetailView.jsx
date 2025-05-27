@@ -29,7 +29,7 @@ import React, { useState, useContext, useEffect } from 'react';
               <img  
                 alt={item.name} 
                 className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                src="https://images.unsplash.com/photo-1504674900247-0877df9cc836" 
+                src={item.imageSrc}
               />
             </div>
           )}
