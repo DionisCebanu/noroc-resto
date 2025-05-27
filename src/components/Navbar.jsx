@@ -4,6 +4,7 @@ import React, { useContext, useState } from 'react';
     import { Button } from '@/components/ui/button';
     import { LanguageContext } from '@/context/LanguageContext';
     import { Globe, Menu, X, Utensils } from 'lucide-react';
+    import {Home, CalendarCheck, Info, BookOpen } from 'lucide-react';
 
     const navItemVariants = {
       hidden: { opacity: 0, y: -20 },
@@ -26,12 +27,15 @@ import React, { useContext, useState } from 'react';
       const [isLangDropdownOpen, setIsLangDropdownOpen] = useState(false);
 
       const navLinks = [
-        { to: "/", textKey: "navHome" },
-        { to: "/menu", textKey: "navMenu" },
-        { to: "/booking", textKey: "navBooking" },
-        { to: "/about", textKey: "navAbout" },
-        { to: "/events", textKey: "navEvents"},
+        { to: "/", textKey: "navHome", icon: <Home size={18} /> },
+        { to: "/menu", textKey: "navMenu", icon: <Utensils size={18} /> },
+        { to: "/booking", textKey: "navBooking", icon: <CalendarCheck size={18} /> },
+        { to: "/events", textKey: "navEvents", icon: <BookOpen size={18} /> },
+        { to: "/about", textKey: "navAbout", icon: <Info size={18} /> },
       ];
+
+      const activeLinkClasses = "text-primary font-semibold shadow-glow-primary";
+      const inactiveLinkClasses = "text-gray-300 hover:text-primary transition-colors duration-200";
 
       const getLanguageName = (langCode) => {
         switch (langCode) {
@@ -67,14 +71,12 @@ import React, { useContext, useState } from 'react';
                   <motion.div key={link.to} variants={navItemVariants} initial="hidden" animate="visible" custom={index}>
                     <NavLink
                       to={link.to}
-                      className={({ isActive }) =>
-                        `px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 ease-in-out
-                        ${isActive 
-                          ? 'bg-primary/20 text-primary shadow-md' 
-                          : 'text-gray-300 hover:bg-slate-700/50 hover:text-white hover:shadow-sm'
-                        }`
+                      className={({ isActive }) => 
+                        `px-4 py-2 rounded-md text-sm font-medium flex items-center space-x-2 gap-2
+                        ${isActive ? activeLinkClasses : inactiveLinkClasses}`
                       }
                     >
+                      {link.icon}
                       {t(link.textKey)}
                     </NavLink>
                   </motion.div>
@@ -176,14 +178,12 @@ import React, { useContext, useState } from 'react';
                         setIsMobileMenuOpen(false);
                         setIsLangDropdownOpen(false); // Close lang dropdown when nav link clicked on mobile
                       }}
-                      className={({ isActive }) =>
-                        `block px-3 py-2 rounded-md text-base font-medium
-                        ${isActive 
-                          ? 'bg-primary/20 text-primary' 
-                          : 'text-gray-300 hover:bg-slate-700 hover:text-white'
-                        }`
+                      className={({ isActive }) => 
+                        `px-4 py-2 rounded-md text-sm font-medium flex items-center space-x-2  gap-2
+                        ${isActive ? activeLinkClasses : inactiveLinkClasses}`
                       }
                     >
+                      {link.icon}
                       {t(link.textKey)}
                     </NavLink>
                   ))}
