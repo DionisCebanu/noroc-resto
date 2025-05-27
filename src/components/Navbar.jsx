@@ -30,6 +30,7 @@ import React, { useContext, useState } from 'react';
         { to: "/menu", textKey: "navMenu" },
         { to: "/booking", textKey: "navBooking" },
         { to: "/about", textKey: "navAbout" },
+        { to: "/events", textKey: "navEvents"},
       ];
 
       const getLanguageName = (langCode) => {

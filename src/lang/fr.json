@@ -4,6 +4,7 @@
   "navMenu": "Menu",
   "navBooking": "Réserver une Table",
   "navAbout": "À Propos",
+  "navEvents": "Actualités & Événements",
   "language": "Langue",
   "english": "Anglais",
   "french": "Français",
@@ -200,5 +201,15 @@
   "promotion6Name": "Plateau de fromages artisanaux",
   "promotion6Desc": "Sélection de fromages locaux et importés, fruits, noix.",
   "promotionBadge": "Spécial",
-  "promotionBtn": "Commander"
+  "promotionBtn": "Commander",
+
+  "eventsPageTitle": "Actualités & Événements",
+  "eventsPageSubtitle": "Restez informé de nos dernières annonces, articles de blog et événements à venir.",
+  "eventsFilterAll": "Tout",
+  "eventsFilterBlog": "Blog",
+  "eventsFilterEvents": "Événements",
+  "eventsNoPosts": "Aucun article trouvé pour cette catégorie pour le moment.",
+  "readMoreLink": "Lire la Suite",
+  "postTypeBlog": "Blog",
+   "postTypeEvent": "Événement"
 }

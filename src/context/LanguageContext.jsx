@@ -32,16 +32,24 @@ import React, { createContext, useState, useEffect, useCallback } from 'react';
         });
       };
       
-      const t = useCallback((key, defaultText = '', replacements = {}) => {
-        let message = messages[language]?.[key] || messages['en']?.[key] || defaultText || key;
-        
-        Object.keys(replacements).forEach(placeholder => {
+      const t = useCallback((key, options = {}) => {
+        const { defaultText = '', replacements = {} } = options;
+      
+        // Safely resolve the message or fallback
+        let message = (
+          messages[language]?.[key] ??
+          messages['en']?.[key] ??
+          defaultText) || key;
+      
+        // Replace {{placeholders}} with replacements
+        Object.entries(replacements).forEach(([placeholder, value]) => {
           const regex = new RegExp(`{{${placeholder}}}`, 'g');
-          message = message.replace(regex, replacements[placeholder]);
+          message = message.replace(regex, value);
         });
-        
+      
         return message;
       }, [language]);
+      
 
       return (
         <LanguageContext.Provider value={{ language, cycleLanguage, t, setLanguage, availableLanguages }}>

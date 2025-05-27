@@ -8,6 +8,7 @@
     import MenuPage from '@/pages/MenuPage';
     import BookingPage from '@/pages/BookingPage';
     import AboutPage from '@/pages/AboutPage';
+    import EventsPage from '@/pages/EventsPage';
     import { AnimatePresence } from 'framer-motion';
     import { LanguageContext } from '@/context/LanguageContext';
 
@@ -39,6 +40,7 @@
                   <Route path="/menu" element={<MenuPage />} />
                   <Route path="/booking" element={<BookingPage />} />
                   <Route path="/about" element={<AboutPage />} />
+                  <Route path="/events" element={<EventsPage />} />
                 </Routes>
               </AnimatePresence>
             </main>

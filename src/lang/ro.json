@@ -4,6 +4,7 @@
   "navMenu": "Meniu",
   "navBooking": "Rezervă o Masă",
   "navAbout": "Despre Noi",
+  "navEvents": "Noutăți & Evenimente",
   "language": "Limbă",
   "english": "Engleză",
   "french": "Franceză",
@@ -200,5 +201,15 @@
   "promotion6Name": "Platou de brânzeturi artizanale",
   "promotion6Desc": "Selecție de brânzeturi locale și importate, fructe, nuci.",
   "promotionBadge": "Special",
-  "promotionBtn": "Comandă acum"
+  "promotionBtn": "Comandă acum",
+
+  "eventsPageTitle": "Noutăți & Evenimente",
+  "eventsPageSubtitle": "Rămâneți la curent cu ultimele noastre anunțuri, postări de blog și evenimente viitoare.",
+  "eventsFilterAll": "Toate",
+  "eventsFilterBlog": "Blog",
+  "eventsFilterEvents": "Evenimente",
+  "eventsNoPosts": "Nicio postare găsită pentru această categorie încă.",
+  "readMoreLink": "Citește Mai Mult",
+  "postTypeBlog": "Blog",
+  "postTypeEvent": "Eveniment"
 }

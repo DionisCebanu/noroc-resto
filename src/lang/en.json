@@ -4,6 +4,7 @@
   "navMenu": "Menu",
   "navBooking": "Book a Table",
   "navAbout": "About Us",
+  "navEvents": "News & Events",
   "language": "Language",
   "english": "English",
   "french": "French",
@@ -199,5 +200,15 @@
   "promotion6Name": "Artisan Cheese Board",
   "promotion6Desc": "Selection of local and imported cheeses, fruits, nuts.",
   "promotionBadge": "Special",
-  "promotionBtn": "Order Now"
+  "promotionBtn": "Order Now",
+
+  "eventsPageTitle": "News & Events",
+    "eventsPageSubtitle": "Stay updated with our latest announcements, blog posts, and upcoming events.",
+    "eventsFilterAll": "All",
+    "eventsFilterBlog": "Blog",
+    "eventsFilterEvents": "Events",
+    "eventsNoPosts": "No posts found for this category yet.",
+    "readMoreLink": "Read More",
+    "postTypeBlog": "Blog",
+    "postTypeEvent": "Event"
 }
