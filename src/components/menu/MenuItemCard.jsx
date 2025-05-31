@@ -34,7 +34,7 @@ import React, { useContext } from 'react';
               <img   
                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 ease-in-out" 
                 alt={item.name}
-                src={item.imageSrc} />
+                src="https://images.unsplash.com/photo-1675023112817-52b789fd2ef0" />
             </div>
             <CardHeader>
               <CardTitle className="text-2xl text-primary group-hover:text-accent transition-colors duration-300">{item.name}</CardTitle>
