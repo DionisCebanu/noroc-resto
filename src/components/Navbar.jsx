@@ -30,6 +30,8 @@ import React, { useContext, useState } from 'react';
         { to: "/", textKey: "navHome", icon: <Home size={18} /> },
         { to: "/menu", textKey: "navMenu", icon: <Utensils size={18} /> },
         /* { to: "/booking", textKey: "navBooking", icon: <CalendarCheck size={18} /> }, */
+        /* { nameKey: 'navOurServices', path: '/our-services'}, */
+        { to: "/our-service", textKey: "navOurServices", icon: <BookOpen size={18} /> },
         { to: "/events", textKey: "navEvents", icon: <BookOpen size={18} /> },
         { to: "/about", textKey: "navAbout", icon: <Info size={18} /> },
       ];
