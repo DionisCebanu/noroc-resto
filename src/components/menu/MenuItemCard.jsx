@@ -34,7 +34,12 @@ import React, { useContext } from 'react';
               <img   
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 ease-in-out" 
                 alt={item.name}
-                src={item.imageSrc} />
+                src={item.imageSrc} 
+                onError={(e) => {
+                  e.target.onerror = null; // prevent infinite loop if fallback fails
+                  e.target.src = '/images/special-meals/mexican.jpg';
+                }}
+                />
             </div>
             <CardHeader>
               <CardTitle className="text-2xl text-primary group-hover:text-accent transition-colors duration-300">{item.name}</CardTitle>
