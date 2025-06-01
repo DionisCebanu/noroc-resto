@@ -27,7 +27,7 @@ export const initialMenuDataFiltered = {
       imageSrc: 'images/menu/supa-galuste.png',
       categoryId: 'supe'
     },
-    {
+    /* {
       id: 'supa4',
       nameKey: 'supaCiuperciName', defaultName: 'Supă de ciuperci',
       descriptionKey: 'supaCiuperciDesc', defaultDescription: 'Creamy mushroom soup with fresh herbs.',
@@ -35,7 +35,7 @@ export const initialMenuDataFiltered = {
       imageText: "Creamy mushroom soup with croutons",
       imageSrc: '/images/special-meals/soup.jpg', // Add your real image if available
       categoryId: 'supe'
-    }
+    } */
   ],
   feluriPrincipale: [
     {
@@ -121,7 +121,7 @@ export const initialMenuDataFiltered = {
       imageSrc: 'images/menu/placinta-varza.png',
       categoryId: 'placintePatiserii'
     },
-    {
+    /* {
       id: 'pp4',
       nameKey: 'placinteDovleacName', defaultName: 'Plăcinte cu dovleac',
       descriptionKey: 'placinteDovleacDesc', defaultDescription: 'Sweet pies filled with spiced pumpkin puree.',
@@ -129,7 +129,7 @@ export const initialMenuDataFiltered = {
       imageText: "Sweet Placinte cu dovleac (pumpkin pies)",
       imageSrc: 'images/menu/placinta-dovleac.png', // Add image
       categoryId: 'placintePatiserii'
-    }
+    } */
   ],
   deserturi: [
     {
@@ -159,7 +159,7 @@ export const initialMenuDataFiltered = {
       imageSrc: 'images/menu/cozonac.png',
       categoryId: 'deserturi'
     },
-    {
+    /* {
       id: 'des4',
       nameKey: 'desertBabaNeagraName', defaultName: 'Babă Neagră',
       descriptionKey: 'desertBabaNeagraDesc', defaultDescription: 'A unique, dark, moist cake made with kefir and soda, a traditional delight.',
@@ -167,7 +167,7 @@ export const initialMenuDataFiltered = {
       imageText: "Slice of traditional Moldovan Baba Neagra cake",
       imageSrc: 'images/menu/baba-neagra.png', // Add your real image
       categoryId: 'deserturi'
-    }
+    } */
   ],
   bauturi: [
     {
@@ -197,7 +197,7 @@ export const initialMenuDataFiltered = {
       imageSrc: 'images/menu/must.png',
       categoryId: 'bauturi'
     },
-    {
+   /*  {
       id: 'btr4',
       nameKey: 'bauturaCeaiPlanteName', defaultName: 'Ceai de plante medicinale',
       descriptionKey: 'bauturaCeaiPlanteDesc', defaultDescription: 'Herbal tea made from local medicinal plants like linden, mint, or chamomile.',
@@ -205,7 +205,7 @@ export const initialMenuDataFiltered = {
       imageText: "Cup of aromatic herbal tea",
       imageSrc: 'images/menu/ceai-plante.png', // Add image if available
       categoryId: 'bauturi'
-    }
+    } */
   ]
 };
 

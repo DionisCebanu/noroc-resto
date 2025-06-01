@@ -24,11 +24,14 @@ import React, { useState, useContext, useEffect } from 'react';
         <motion.div
           variants={itemVariants}
           layout
-          className={`cursor-pointer rounded-lg overflow-hidden shadow-md hover:shadow-primary/30 transition-all duration-300 border-2 ${isSelected ? 'border-primary scale-105 bg-primary/10' : 'border-slate-700 bg-slate-800 hover:border-primary/50'} ${layoutMode === 'vertical' ? 'flex flex-col' : ''}`}
+          className={
+            `cursor-pointer rounded-lg overflow-hidden shadow-md hover:shadow-primary/30 transition-all duration-300 border-2 
+            ${isSelected ? 'border-primary scale-105 bg-primary/10' : 'border-slate-700 bg-slate-800 hover:border-primary/50'} 
+            ${layoutMode === 'list' ? 'flex flex-row items-center gap-4' : ''} `}
           onClick={onSelect}
         >
           {item.imageText && (
-            <div className={`w-full overflow-hidden ${layoutMode === 'vertical' ? 'h-48' : 'h-40'}`}>
+            <div className={`w-full overflow-hidden ${layoutMode === 'list' ? 'h-48 w-[50%]' : 'h-40'}`}>
               <img  
                 alt={item.name} 
                 className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
@@ -221,6 +224,8 @@ import React, { useState, useContext, useEffect } from 'react';
                             <EventMenuItemCard
                               key={itemId}
                               item={item}
+                              dataItemId={`card-item-event`}
+                              style={{ background: 'red' }}
                               isSelected={selectedItems[group.groupId] === itemId}
                               onSelect={() => handleItemSelection(group.groupId, itemId)}
                               layoutMode={layoutMode}
