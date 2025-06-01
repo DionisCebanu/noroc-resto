@@ -32,9 +32,14 @@ import React, { useContext } from 'react';
           <Card className="h-full flex flex-col bg-slate-800/60 border-slate-700 hover:shadow-2xl hover:border-primary transition-all duration-300 overflow-hidden group">
             <div className="relative h-56 w-full overflow-hidden">
               <img   
-                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 ease-in-out" 
+                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 ease-in-out" 
                 alt={item.name}
-                src={item.imageSrc} />
+                src={item.imageSrc} 
+                onError={(e) => {
+                  e.target.onerror = null; // prevent infinite loop if fallback fails
+                  e.target.src = '/images/special-meals/mexican.jpg';
+                }}
+                />
             </div>
             <CardHeader>
               <CardTitle className="text-2xl text-primary group-hover:text-accent transition-colors duration-300">{item.name}</CardTitle>

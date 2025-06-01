@@ -4,7 +4,7 @@ import React, { useContext, useState } from 'react';
     import { Button } from '@/components/ui/button';
     import { LanguageContext } from '@/context/LanguageContext';
     import { Globe, Menu, X, Utensils } from 'lucide-react';
-    import {Home, CalendarCheck, Info, BookOpen } from 'lucide-react';
+    import {Home, CalendarCheck, Info, BookOpen, HandIcon, Sparkle } from 'lucide-react';
 
     const navItemVariants = {
       hidden: { opacity: 0, y: -20 },
@@ -30,6 +30,8 @@ import React, { useContext, useState } from 'react';
         { to: "/", textKey: "navHome", icon: <Home size={18} /> },
         { to: "/menu", textKey: "navMenu", icon: <Utensils size={18} /> },
         /* { to: "/booking", textKey: "navBooking", icon: <CalendarCheck size={18} /> }, */
+        /* { nameKey: 'navOurServices', path: '/our-services'}, */
+        { to: "/our-services", textKey: "navService", icon: <Sparkle size={18} /> },
         { to: "/events", textKey: "navEvents", icon: <BookOpen size={18} /> },
         { to: "/about", textKey: "navAbout", icon: <Info size={18} /> },
       ];

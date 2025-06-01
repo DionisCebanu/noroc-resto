@@ -4,16 +4,16 @@ import React, { useState, useEffect, useContext } from 'react';
     import MenuConstructorModal from '@/components/menu/MenuConstructorModal';
     import MenuContent from '@/components/menu/MenuContent';
     import EventMenuDetailView from '@/components/menu/EventMenuDetailView';
+    import EventMenuVariantListView from '@/components/menu/EventMenuVariantListView'; 
     import { LanguageContext } from '@/context/LanguageContext';
     import { AppContext } from '@/App';
     import { Button } from '@/components/ui/button';
     import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
-    import { ChefHat, ListChecks, CalendarHeart, ArrowLeft } from 'lucide-react';
+    import { ChefHat, ListChecks, CalendarHeart, ArrowLeft, LayoutGrid, Rows } from 'lucide-react';
     import { getAllMenuItems as rawGetAllMenuItems } from '@/data/menu/items';
     import { categoriesData as rawCategoriesData } from '@/data/menu/categories';
     import { eventMenusData as rawEventMenusData } from '@/data/menu/eventMenus';
     import { initialMenuDataFiltered } from '@/data/menu/items';
-
 
     const pageVariants = {
       initial: { opacity: 0, x: "100vw" },
@@ -41,8 +41,10 @@ import React, { useState, useEffect, useContext } from 'react';
       const [allMenuItems, setAllMenuItems] = useState([]);
       const [hasMadeInitialSelection, setHasMadeInitialSelection] = useState(false);
       const [currentBookingId, setCurrentBookingId] = useState(null);
-      const [eventMenus, setEventMenus] = useState([]);
-      const [selectedEventMenu, setSelectedEventMenu] = useState(null);
+      
+      const [eventMenuTypes, setEventMenuTypes] = useState([]); 
+      const [selectedEventType, setSelectedEventType] = useState(null); 
+      const [selectedEventVariant, setSelectedEventVariant] = useState(null);
 
       useEffect(() => {
         if (location.state?.fromBooking && location.state?.bookingId) {
@@ -58,15 +60,23 @@ import React, { useState, useEffect, useContext } from 'react';
         }));
         setCategoriesData(translatedCategories);
 
-        const translatedEventMenus = rawEventMenusData.map(em => ({
-          ...em,
-          title: t(em.titleKey, em.defaultTitle),
-          groups: em.groups.map(group => ({
-            ...group,
-            groupTitle: t(group.groupTitleKey, group.defaultGroupTitle)
+        const translatedEventMenuTypes = rawEventMenusData.map(emt => ({
+          ...emt,
+          title: t(emt.titleKey, emt.defaultTitle),
+          variants: emt.variants.map(variant => ({
+            ...variant,
+            variantName: t(variant.variantNameKey, variant.defaultVariantName),
+            groups: variant.groups.map(group => ({
+              ...group,
+              groupTitle: t(group.groupTitleKey, group.defaultGroupTitle),
+              categories: group.categories?.map(cat => ({
+                ...cat,
+                categoryName: t(cat.categoryNameKey, cat.defaultCategoryName)
+              }))
+            }))
           }))
         }));
-        setEventMenus(translatedEventMenus);
+        setEventMenuTypes(translatedEventMenuTypes);
         
         const allRawItems = rawGetAllMenuItems();
         const translatedAllItems = allRawItems.map(item => ({
@@ -103,11 +113,16 @@ import React, { useState, useEffect, useContext } from 'react';
         setMenuSelectionMode('customCategory');
       };
 
-      const handleSelectEventMenu = (eventMenu) => {
-        setSelectedEventMenu(eventMenu);
-        setMenuSelectionMode('eventDetail');
+      const handleSelectEventType = (eventType) => {
+        setSelectedEventType(eventType);
+        setMenuSelectionMode('eventVariantList');
       };
 
+      const handleSelectEventVariant = (variant) => {
+        setSelectedEventVariant(variant);
+        setMenuSelectionMode('eventDetail');
+      };
+      
       const renderInitialChoice = () => (
         <motion.div 
           key="initialChoice"
@@ -119,7 +134,7 @@ import React, { useState, useEffect, useContext } from 'react';
         >
           <Card 
             className="bg-slate-800/70 border-slate-700 hover:border-primary transition-all duration-300 cursor-pointer transform hover:scale-105 shadow-lg hover:shadow-primary/30"
-            onClick={() => setMenuSelectionMode('eventList')}
+            onClick={() => setMenuSelectionMode('eventTypeList')}
           >
             <CardHeader className="items-center text-center">
               <CalendarHeart size={48} className="text-primary mb-3" />
@@ -146,9 +161,9 @@ import React, { useState, useEffect, useContext } from 'react';
         </motion.div>
       );
 
-      const renderEventList = () => (
+      const renderEventTypeList = () => (
         <motion.div
-          key="eventList"
+          key="eventTypeList"
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: -50 }}
@@ -158,23 +173,23 @@ import React, { useState, useEffect, useContext } from 'react';
           <Button variant="outline" onClick={() => setMenuSelectionMode('initial')} className="mb-6 border-slate-600 text-slate-300 hover:bg-slate-700">
             <ArrowLeft size={18} className="mr-2" /> {t('backButtonText', { defaultText: "Back to Menu Types" })}
           </Button>
-          <h2 className="text-3xl font-bold text-center text-primary mb-8">{t('menuPageEventMenusListTitle', { defaultText: "Our Event Menus" })}</h2>
+          <h2 className="text-3xl font-bold text-center text-primary mb-8">{t('menuPageEventMenusListTitle', { defaultText: "Our Event Menu Types" })}</h2>
           <div className="grid md:grid-cols-2 gap-8">
-            {eventMenus.map(menu => (
+            {eventMenuTypes.map(eventType => (
               <Card 
-                key={menu.id}
+                key={eventType.id}
                 className="bg-slate-800/70 border-slate-700 hover:border-secondary transition-all duration-300 cursor-pointer transform hover:scale-105 shadow-lg hover:shadow-secondary/30"
-                onClick={() => handleSelectEventMenu(menu)}
+                onClick={() => handleSelectEventType(eventType)}
               >
                 <CardHeader>
                   <div className="flex items-center mb-2">
-                    {React.cloneElement(menu.icon, { className: "text-secondary mr-3"})}
-                    <CardTitle className="text-2xl text-secondary">{menu.title}</CardTitle>
+                    {React.cloneElement(eventType.icon, { className: "text-secondary mr-3"})}
+                    <CardTitle className="text-2xl text-secondary">{eventType.title}</CardTitle>
                   </div>
-                  <CardDescription className="text-slate-400">{t('pricePerPersonLabel', { defaultText: "Price per person" })}: <span className="font-bold text-secondary">${menu.pricePerPerson.toFixed(2)}</span></CardDescription>
+                  <CardDescription className="text-slate-400">{t(eventType.descriptionKey, eventType.defaultDescription)}</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <img  alt={menu.title} className="rounded-md aspect-video object-cover" src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa" />
+                  <img  alt={eventType.title} className="rounded-md aspect-video object-cover" src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa" />
                 </CardContent>
               </Card>
             ))}
@@ -258,13 +273,23 @@ import React, { useState, useEffect, useContext } from 'react';
 
           <AnimatePresence mode="wait">
             {menuSelectionMode === 'initial' && renderInitialChoice()}
-            {menuSelectionMode === 'eventList' && renderEventList()}
-            {menuSelectionMode === 'eventDetail' && selectedEventMenu && (
+            {menuSelectionMode === 'eventTypeList' && renderEventTypeList()}
+            {menuSelectionMode === 'eventVariantList' && selectedEventType && (
+              <EventMenuVariantListView 
+                eventType={selectedEventType}
+                onSelectVariant={handleSelectEventVariant}
+                onBack={() => { setMenuSelectionMode('eventTypeList'); setSelectedEventType(null);}}
+                t={t}
+              />
+            )}
+            {menuSelectionMode === 'eventDetail' && selectedEventVariant && selectedEventType && (
               <EventMenuDetailView 
-                menu={selectedEventMenu} 
+                menuTypeTitle={selectedEventType.title}
+                menuVariant={selectedEventVariant} 
                 allMenuItems={allMenuItems} 
-                onBack={() => { setMenuSelectionMode('eventList'); setSelectedEventMenu(null); }}
+                onBack={() => { setMenuSelectionMode('eventVariantList'); setSelectedEventVariant(null); }}
                 bookingId={currentBookingId}
+                categoriesData={categoriesData}
               />
             )}
             {menuSelectionMode === 'customCategory' && renderCustomMenuBuilder()}
