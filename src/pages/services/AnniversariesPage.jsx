@@ -27,7 +27,7 @@ import React, { useContext } from 'react';
       ];
 
       const testimonials = [
-        { id: 1, quoteKey: 'anniversariesPageTestimonial1Quote', defaultQuote: "The Golden Spoon made our 10th anniversary so special. The private dining room was perfect, and the food was exceptional!", nameKey: 'anniversariesPageTestimonial1Name', defaultName: "Emily & John S." },
+        { id: 1, quoteKey: 'anniversariesPageTestimonial1Quote', defaultQuote: "The Norok made our 10th anniversary so special. The private dining room was perfect, and the food was exceptional!", nameKey: 'anniversariesPageTestimonial1Name', defaultName: "Emily & John S." },
         { id: 2, quoteKey: 'anniversariesPageTestimonial2Quote', defaultQuote: "We celebrated our parents' 50th here, and it was a night to remember. The staff went above and beyond. Thank you!", nameKey: 'anniversariesPageTestimonial2Name', defaultName: "The Miller Family" },
       ];
 
@@ -65,7 +65,7 @@ import React, { useContext } from 'react';
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3, duration: 0.5 }}
               >
-                {t('anniversariesPageSubtitle', { defaultText: "Celebrate your milestones with elegance and unforgettable flavors at The Golden Spoon." })}
+                {t('anniversariesPageSubtitle', { defaultText: "Celebrate your milestones with elegance and unforgettable flavors at The Norok." })}
               </motion.p>
               <motion.div
                 initial={{ opacity: 0, scale: 0.8 }}
@@ -86,7 +86,7 @@ import React, { useContext } from 'react';
             <div className="space-y-6">
               <h2 className="text-3xl sm:text-4xl font-bold text-accent">{t('anniversariesPageDetailsTitle', { defaultText: "Mark Your Milestones in Style" })}</h2>
               <p className="text-slate-300 leading-relaxed">
-                {t('anniversariesPageDetailsPara1', { defaultText: "Every anniversary is a testament to enduring love and partnership. At The Golden Spoon, we provide the perfect setting to honor these special moments. Whether you're planning an intimate dinner for two or a larger gathering with family and friends, our team is here to make your celebration exceptional." })}
+                {t('anniversariesPageDetailsPara1', { defaultText: "Every anniversary is a testament to enduring love and partnership. At The Norok, we provide the perfect setting to honor these special moments. Whether you're planning an intimate dinner for two or a larger gathering with family and friends, our team is here to make your celebration exceptional." })}
               </p>
               <p className="text-slate-300 leading-relaxed">
                 {t('anniversariesPageDetailsPara2', { defaultText: "Enjoy personalized service, a curated selection of fine wines, and a menu that can be tailored to your preferences. Our elegant private dining options offer exclusivity and comfort, ensuring your anniversary is both memorable and magical." })}

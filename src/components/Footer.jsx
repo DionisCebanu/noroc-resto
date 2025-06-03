@@ -77,7 +77,7 @@
             custom={3}
           >
             <p>{t('footerRights', { year: currentYear })}</p>
-            <p className="mt-1">{t('footerDesignedBy', { heart: '❤️' })}</p>
+            <p className="mt-1">{t('footerDesignedBy', { heart: '❤️' })} <span> 👉 <a href="https://dioniscode.com/" target="_blank" rel="noopener noreferrer" className='text-blue-300 font-bold underline'>{t('seeMyWork')}</a></span></p>
           </motion.div>
         </motion.footer>
       );

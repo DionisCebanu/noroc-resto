@@ -42,7 +42,7 @@
           titleKey: 'serviceCateringTitle',
           descriptionKey: 'serviceCateringDesc',
           defaultTitle: 'Gourmet Catering',
-          defaultDescription: 'Bring The Golden Spoon experience to your location.'
+          defaultDescription: 'Bring The Norok experience to your location.'
         },
       ];
 

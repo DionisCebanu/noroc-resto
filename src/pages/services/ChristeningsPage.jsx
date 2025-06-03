@@ -27,7 +27,7 @@ import React, { useContext } from 'react';
       ];
 
       const testimonials = [
-        { id: 1, quoteKey: 'christeningsPageTestimonial1Quote', defaultQuote: "The Golden Spoon hosted our son's christening, and it was wonderful. The space was perfect for families, and the food was loved by all ages!", nameKey: 'christeningsPageTestimonial1Name', defaultName: "Maria & Alex P." },
+        { id: 1, quoteKey: 'christeningsPageTestimonial1Quote', defaultQuote: "The Norok hosted our son's christening, and it was wonderful. The space was perfect for families, and the food was loved by all ages!", nameKey: 'christeningsPageTestimonial1Name', defaultName: "Maria & Alex P." },
         { id: 2, quoteKey: 'christeningsPageTestimonial2Quote', defaultQuote: "We couldn't have asked for a better place for our daughter's cumătrie. The staff were so accommodating and helpful. Everything was perfect.", nameKey: 'christeningsPageTestimonial2Name', defaultName: "Elena & Andrei V." },
       ];
 
@@ -65,7 +65,7 @@ import React, { useContext } from 'react';
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3, duration: 0.5 }}
               >
-                {t('christeningsPageSubtitle', { defaultText: "Celebrate your little one's special day with a heartwarming gathering at The Golden Spoon." })}
+                {t('christeningsPageSubtitle', { defaultText: "Celebrate your little one's special day with a heartwarming gathering at The Norok." })}
               </motion.p>
               <motion.div
                 initial={{ opacity: 0, scale: 0.8 }}
@@ -86,7 +86,7 @@ import React, { useContext } from 'react';
             <div className="space-y-6">
               <h2 className="text-3xl sm:text-4xl font-bold text-secondary">{t('christeningsPageDetailsTitle', { defaultText: "A Warm Welcome for Your Little One" })}</h2>
               <p className="text-slate-300 leading-relaxed">
-                {t('christeningsPageDetailsPara1', { defaultText: "A christening or cumătrie is a cherished family occasion. At The Golden Spoon, we offer a warm, welcoming atmosphere perfect for celebrating this significant milestone. Our versatile event spaces can be adapted to suit your party size and style, ensuring a comfortable and joyous gathering for all your loved ones." })}
+                {t('christeningsPageDetailsPara1', { defaultText: "A christening or cumătrie is a cherished family occasion. At The Norok, we offer a warm, welcoming atmosphere perfect for celebrating this significant milestone. Our versatile event spaces can be adapted to suit your party size and style, ensuring a comfortable and joyous gathering for all your loved ones." })}
               </p>
               <p className="text-slate-300 leading-relaxed">
                 {t('christeningsPageDetailsPara2', { defaultText: "Our culinary team can create delightful menus that appeal to both adults and children, incorporating traditional flavors or contemporary dishes as you prefer. We pay attention to every detail, from decorations to entertainment options, to make your child's christening a beautiful and stress-free event." })}

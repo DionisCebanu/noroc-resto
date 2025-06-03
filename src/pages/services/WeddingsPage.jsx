@@ -27,7 +27,7 @@ import React, { useContext } from 'react';
       ];
 
       const testimonials = [
-        { id: 1, quoteKey: 'weddingsPageTestimonial1Quote', defaultQuote: "Our wedding at The Golden Spoon was a dream come true! The food, service, and ambiance were beyond perfect. Highly recommended!", nameKey: 'weddingsPageTestimonial1Name', defaultName: "Anna & Mark T." },
+        { id: 1, quoteKey: 'weddingsPageTestimonial1Quote', defaultQuote: "Our wedding at The Norok was a dream come true! The food, service, and ambiance were beyond perfect. Highly recommended!", nameKey: 'weddingsPageTestimonial1Name', defaultName: "Anna & Mark T." },
         { id: 2, quoteKey: 'weddingsPageTestimonial2Quote', defaultQuote: "The team handled every detail flawlessly. Our guests are still raving about the delicious menu. Thank you for making our day so special!", nameKey: 'weddingsPageTestimonial2Name', defaultName: "Sophia & David L." },
       ];
 
@@ -65,7 +65,7 @@ import React, { useContext } from 'react';
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3, duration: 0.5 }}
               >
-                {t('weddingsPageSubtitle', { defaultText: "Crafting your perfect day with elegance, exquisite cuisine, and impeccable service at The Golden Spoon." })}
+                {t('weddingsPageSubtitle', { defaultText: "Crafting your perfect day with elegance, exquisite cuisine, and impeccable service at The Norok." })}
               </motion.p>
               <motion.div
                 initial={{ opacity: 0, scale: 0.8 }}
@@ -86,7 +86,7 @@ import React, { useContext } from 'react';
             <div className="space-y-6">
               <h2 className="text-3xl sm:text-4xl font-bold text-primary">{t('weddingsPageDetailsTitle', { defaultText: "Your Dream Wedding, Our Expertise" })}</h2>
               <p className="text-slate-300 leading-relaxed">
-                {t('weddingsPageDetailsPara1', { defaultText: "At The Golden Spoon, we understand that your wedding day is one of the most important moments of your life. Our dedicated event planning team works closely with you to bring your vision to life, ensuring every detail is meticulously arranged, from custom menus to stunning decor." })}
+                {t('weddingsPageDetailsPara1', { defaultText: "At The Norok, we understand that your wedding day is one of the most important moments of your life. Our dedicated event planning team works closely with you to bring your vision to life, ensuring every detail is meticulously arranged, from custom menus to stunning decor." })}
               </p>
               <p className="text-slate-300 leading-relaxed">
                 {t('weddingsPageDetailsPara2', { defaultText: "Choose from our elegant event spaces, each offering a unique ambiance. Our chefs specialize in creating memorable culinary experiences, using the freshest ingredients to craft dishes that will delight your guests. Let us handle the complexities, so you can focus on celebrating your love." })}
